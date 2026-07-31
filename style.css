@@ -1,0 +1,314 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Menu */
+
+.menu{
+    width:220px;
+    background:#1f2937;
+    color:#fff;
+    padding:30px 20px;
+}
+
+.menu h2{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:28px;
+}
+
+.menu ul{
+    list-style:none;
+}
+
+.menu li{
+    padding:15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.menu li.ativo{
+    background:#2563eb;
+}
+
+/* Conteúdo */
+
+.conteudo{
+    flex:1;
+    padding:30px;
+}
+
+header{
+    margin-bottom:30px;
+}
+
+header h1{
+    color:#1f2937;
+}
+
+/* Cards */
+
+.cards{
+    display:flex;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.card{
+    background:#fff;
+    flex:1;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.card h3{
+    color:#555;
+    margin-bottom:15px;
+}
+
+.card p{
+    font-size:30px;
+    color:#2563eb;
+    font-weight:bold;
+}
+
+/* Formulário */
+
+.formulario{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:25px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.formulario h2{
+    margin-bottom:20px;
+}
+
+.campos{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+}
+
+.campos input{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    outline:none;
+}
+
+.campos input:focus{
+    border-color:#2563eb;
+}
+
+.campos button{
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
+}
+
+.campos button:hover{
+    background:#1d4ed8;
+}
+
+/* Controle de Comissões */
+
+.comissoes{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:25px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.comissoes h2{
+    margin-bottom:20px;
+}
+
+.campos-comissoes{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.campos-comissoes input{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    outline:none;
+}
+
+.campos-comissoes input:focus{
+    border-color:#2563eb;
+}
+
+.campos-comissoes button{
+    background:#16a34a;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
+}
+
+.campos-comissoes button:hover{
+    background:#15803d;
+}
+
+.cards-comissoes{
+    display:flex;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.filtro-comissoes{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+    flex-wrap:wrap;
+}
+
+.filtro-comissoes label{
+    font-weight:bold;
+    color:#374151;
+}
+
+.filtro-comissoes select,
+.filtro-comissoes button{
+    padding:10px 12px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.filtro-comissoes button{
+    background:#2563eb;
+    color:#fff;
+    cursor:pointer;
+}
+
+.resumo-mes{
+    color:#4b5563;
+    margin-bottom:15px;
+    font-size:14px;
+}
+
+.tabela-comissoes{
+    overflow-x:auto;
+}
+
+.status{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.status.pendente{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.status.recebida{
+    background:#dcfce7;
+    color:#166534;
+}
+
+/* Pesquisa */
+
+.pesquisa{
+    margin-bottom:20px;
+}
+
+.pesquisa input{
+    width:350px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    outline:none;
+}
+
+.pesquisa input:focus{
+    border-color:#2563eb;
+}
+
+/* Tabela */
+
+.tabela{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#2563eb;
+    color:#fff;
+}
+
+th,
+td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+tbody tr:hover{
+    background:#f5f5f5;
+}
+
+/* Botões */
+
+.editar{
+    background:#f59e0b;
+    color:#fff;
+    border:none;
+    padding:8px 12px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-right:5px;
+}
+
+.excluir{
+    background:#dc2626;
+    color:#fff;
+    border:none;
+    padding:8px 12px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.editar:hover{
+    background:#d97706;
+}
+
+.excluir:hover{
+    background:#b91c1c;
+}

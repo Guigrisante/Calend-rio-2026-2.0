@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Vendas</title>
+
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Menu -->
+    <aside class="menu">
+        <h2>Controle</h2>
+
+        <ul>
+            <li class="ativo">Dashboard</li>
+        </ul>
+    </aside>
+
+    <!-- Conteúdo -->
+    <main class="conteudo">
+
+        <header>
+            <h1>Controle de Vendas</h1>
+        </header>
+
+        <!-- Cards -->
+        <section class="cards">
+
+            <div class="card">
+                <h3>Total de Vendas</h3>
+                <p id="quantidadeVendas">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Vendido</h3>
+                <p id="valorTotal">R$ 0,00</p>
+            </div>
+
+        </section>
+
+        <!-- Cadastro -->
+        <section class="formulario">
+
+            <h2>Nova Venda</h2>
+
+            <div class="campos">
+
+                <input
+                    type="text"
+                    id="cliente"
+                    placeholder="Nome do Cliente"
+                >
+
+                <input
+                    type="text"
+                    id="produto"
+                    placeholder="Produto"
+                >
+
+                <input
+                    type="number"
+                    id="valor"
+                    placeholder="Valor"
+                    step="0.01"
+                >
+
+                <input
+                    type="date"
+                    id="data"
+                >
+
+                <button id="btnSalvar">
+                    Salvar Venda
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Controle de Comissões -->
+        <section class="comissoes">
+
+            <h2>Controle de Comissões</h2>
+
+            <div class="campos-comissoes">
+
+                <input
+                    type="text"
+                    id="vendedor"
+                    placeholder="Nome do vendedor"
+                >
+
+                <input
+                    type="number"
+                    id="valorVenda"
+                    placeholder="Valor da venda"
+                    step="0.01"
+                >
+
+                <input
+                    type="number"
+                    id="percentualComissao"
+                    placeholder="% Comissão"
+                    step="0.01"
+                    min="0"
+                    max="100"
+                >
+
+                <input
+                    type="date"
+                    id="dataComissao"
+                >
+
+                <button id="btnSalvarComissao">
+                    Salvar Comissão
+                </button>
+
+            </div>
+
+            <div class="cards-comissoes">
+                <div class="card">
+                    <h3>Total de Comissões</h3>
+                    <p id="totalComissoes">R$ 0,00</p>
+                </div>
+
+                <div class="card">
+                    <h3>Comissões Pendentes</h3>
+                    <p id="comissoesPendentes">R$ 0,00</p>
+                </div>
+            </div>
+
+            <div class="filtro-comissoes">
+                <label for="filtroMes">Relatório por mês</label>
+                <select id="filtroMes">
+                    <option value="todos">Todos</option>
+                </select>
+                <button id="btnLimparFiltro" type="button">Limpar filtro</button>
+            </div>
+
+            <p id="resumoMes" class="resumo-mes">Mostrando todas as comissões.</p>
+
+            <div class="tabela-comissoes">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vendedor</th>
+                            <th>Venda</th>
+                            <th>%</th>
+                            <th>Comissão</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaComissoes">
+                        <!-- As comissões aparecerão aqui -->
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- Pesquisa -->
+        <section class="pesquisa">
+
+            <input
+                type="text"
+                id="pesquisar"
+                placeholder="Pesquisar cliente ou produto..."
+            >
+
+        </section>
+
+        <!-- Tabela -->
+        <section class="tabela">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Produto</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="listaVendas">
+
+                    <!-- As vendas aparecerão aqui -->
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
