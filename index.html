@@ -1,212 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de Vendas</title>
-
-    <link rel="stylesheet" href="style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d35">
+  <title>Comissões de vendas</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
-
-    <!-- Menu -->
-    <aside class="menu">
-        <h2>Controle</h2>
-
-        <ul>
-            <li class="ativo">Dashboard</li>
-        </ul>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">CV</span><div><strong>Controle</strong><small>Vendas & comissões</small></div></div>
+      <nav aria-label="Navegação principal">
+        <a class="active" href="#dashboard">📊 <span>Visão geral</span></a>
+        <a href="#vendas">🧾 <span>Vendas</span></a>
+        <a href="#relatorio">📤 <span>Exportar</span></a>
+      </nav>
+      <div class="offline"><span></span><div><strong>Dados offline</strong><small>Salvos neste navegador</small></div></div>
     </aside>
 
-    <!-- Conteúdo -->
-    <main class="conteudo">
+    <main>
+      <header class="topbar">
+        <div><p class="eyebrow">PAINEL FINANCEIRO</p><h1>Comissões de vendas</h1><p class="subtitle">Importe a base, acompanhe os resultados e feche o período.</p></div>
+        <button id="btnImportarTopo" class="btn primary" type="button">＋ Importar planilha</button>
+      </header>
 
-        <header>
-            <h1>Controle de Vendas</h1>
-        </header>
+      <section class="import-card" id="dashboard">
+        <div class="import-icon">↑</div>
+        <div class="import-copy"><strong>Atualize sua base de vendas</strong><span id="statusBase">Nenhuma planilha importada</span></div>
+        <div class="import-actions">
+          <select id="modoImportacao" aria-label="Modo de importação">
+            <option value="substituir">Substituir base atual</option>
+            <option value="adicionar">Adicionar sem duplicar</option>
+          </select>
+          <button id="btnImportar" class="btn dark" type="button">Selecionar CSV</button>
+          <input id="arquivoCsv" type="file" accept=".csv,text/csv" hidden>
+        </div>
+      </section>
 
-        <!-- Cards -->
-        <section class="cards">
+      <section class="filters" aria-label="Filtros">
+        <label>Mês<select id="filtroMes"><option value="todos">Todos os meses</option></select></label>
+        <label>Vendedor<select id="filtroVendedor"><option value="todos">Todos os vendedores</option></select></label>
+        <div class="fixed-filter"><span>Situação contabilizada</span><strong>✓ Somente instaladas</strong></div>
+        <label>Comissão (%)<input id="taxaComissao" type="number" min="0" max="100" step="0.01" value="10"></label>
+        <button id="btnLimpar" class="btn ghost" type="button">Limpar filtros</button>
+      </section>
 
-            <div class="card">
-                <h3>Total de Vendas</h3>
-                <p id="quantidadeVendas">0</p>
-            </div>
+      <section class="metrics" aria-label="Resumo do período">
+        <article><div class="metric-icon green">🧾</div><div><span>Vendas no período</span><strong id="qtdVendas">0</strong><small id="periodoLabel">Nenhum dado</small></div></article>
+        <article><div class="metric-icon blue">R$</div><div><span>Valor vendido</span><strong id="valorVendido">R$ 0,00</strong><small>Base dos serviços</small></div></article>
+        <article class="featured"><div class="metric-icon gold">%</div><div><span>Comissão estimada</span><strong id="valorComissao">R$ 0,00</strong><small id="taxaLabel">Taxa de 10%</small></div></article>
+        <article><div class="metric-icon purple">👥</div><div><span>Vendedores</span><strong id="qtdVendedores">0</strong><small>Com vendas no período</small></div></article>
+      </section>
 
-            <div class="card">
-                <h3>Total Vendido</h3>
-                <p id="valorTotal">R$ 0,00</p>
-            </div>
-
-        </section>
-
-        <!-- Cadastro -->
-        <section class="formulario">
-
-            <h2>Nova Venda</h2>
-
-            <div class="campos">
-
-                <input
-                    type="text"
-                    id="cliente"
-                    placeholder="Nome do Cliente"
-                >
-
-                <input
-                    type="text"
-                    id="produto"
-                    placeholder="Produto"
-                >
-
-                <input
-                    type="number"
-                    id="valor"
-                    placeholder="Valor"
-                    step="0.01"
-                >
-
-                <input
-                    type="date"
-                    id="data"
-                >
-
-                <button id="btnSalvar">
-                    Salvar Venda
-                </button>
-
-            </div>
-
-        </section>
-
-        <!-- Controle de Comissões -->
-        <section class="comissoes">
-
-            <h2>Controle de Comissões</h2>
-
-            <div class="campos-comissoes">
-
-                <input
-                    type="text"
-                    id="vendedor"
-                    placeholder="Nome do vendedor"
-                >
-
-                <input
-                    type="number"
-                    id="valorVenda"
-                    placeholder="Valor da venda"
-                    step="0.01"
-                >
-
-                <input
-                    type="number"
-                    id="percentualComissao"
-                    placeholder="% Comissão"
-                    step="0.01"
-                    min="0"
-                    max="100"
-                >
-
-                <input
-                    type="date"
-                    id="dataComissao"
-                >
-
-                <button id="btnSalvarComissao">
-                    Salvar Comissão
-                </button>
-
-            </div>
-
-            <div class="cards-comissoes">
-                <div class="card">
-                    <h3>Total de Comissões</h3>
-                    <p id="totalComissoes">R$ 0,00</p>
-                </div>
-
-                <div class="card">
-                    <h3>Comissões Pendentes</h3>
-                    <p id="comissoesPendentes">R$ 0,00</p>
-                </div>
-            </div>
-
-            <div class="filtro-comissoes">
-                <label for="filtroMes">Relatório por mês</label>
-                <select id="filtroMes">
-                    <option value="todos">Todos</option>
-                </select>
-                <button id="btnLimparFiltro" type="button">Limpar filtro</button>
-            </div>
-
-            <p id="resumoMes" class="resumo-mes">Mostrando todas as comissões.</p>
-
-            <div class="tabela-comissoes">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Vendedor</th>
-                            <th>Venda</th>
-                            <th>%</th>
-                            <th>Comissão</th>
-                            <th>Data</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="listaComissoes">
-                        <!-- As comissões aparecerão aqui -->
-                    </tbody>
-                </table>
-            </div>
-
-        </section>
-
-        <!-- Pesquisa -->
-        <section class="pesquisa">
-
-            <input
-                type="text"
-                id="pesquisar"
-                placeholder="Pesquisar cliente ou produto..."
-            >
-
-        </section>
-
-        <!-- Tabela -->
-        <section class="tabela">
-
+      <section class="content-grid">
+        <article class="panel" id="vendas">
+          <div class="panel-head"><div><h2>Vendas do período</h2><p id="contagemTabela">0 registros encontrados</p></div><input id="busca" type="search" placeholder="Buscar cliente, contrato..." aria-label="Buscar vendas"></div>
+          <div class="table-wrap">
             <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Produto</th>
-                        <th>Valor</th>
-                        <th>Data</th>
-                        <th>Ações</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="listaVendas">
-
-                    <!-- As vendas aparecerão aqui -->
-
-                </tbody>
-
+              <thead><tr><th>Data</th><th>Vendedor / cliente</th><th>Contrato</th><th>Serviços</th><th>Situação</th><th class="right">Base</th><th class="right">Comissão</th><th class="right">Ações</th></tr></thead>
+              <tbody id="listaVendas"><tr><td colspan="8" class="empty">Importe uma planilha CSV para começar.</td></tr></tbody>
             </table>
+          </div>
+        </article>
 
-        </section>
+        <aside class="panel ranking">
+          <div class="panel-head"><div><h2>Por vendedor</h2><p>Resultado filtrado</p></div></div>
+          <div id="ranking"><div class="empty compact">Sem dados para exibir.</div></div>
+        </aside>
+      </section>
 
+      <section class="panel export-panel" id="relatorio">
+        <div><p class="eyebrow">FECHAMENTO</p><h2>Exportar relatório profissional</h2><p>Planilha Excel com ranking geral, métricas e uma aba separada para cada vendedor.</p></div>
+        <div class="export-fields">
+          <label>Data inicial<input id="dataInicial" type="date"></label>
+          <label>Data final<input id="dataFinal" type="date"></label>
+          <button id="btnExportar" class="btn primary" type="button">↓ Exportar Excel</button>
+        </div>
+      </section>
+      <footer>As informações ficam somente neste dispositivo. Nenhum dado é enviado para a internet.</footer>
     </main>
+  </div>
 
-</div>
+  <dialog id="modalValor" class="modal">
+    <div class="modal-head"><div><p class="eyebrow">AJUSTE MANUAL</p><h2>Alterar valor da venda</h2></div><button id="fecharModal" class="icon-btn" type="button" aria-label="Fechar">×</button></div>
+    <p id="vendaSelecionada" class="modal-description"></p>
+    <label>Nova base de comissão (R$)<input id="novoValorVenda" type="text" inputmode="decimal" placeholder="0,00"></label>
+    <small id="valorCalculadoInfo" class="calculated-info"></small>
+    <div class="modal-actions"><button id="restaurarValor" class="btn ghost" type="button">Restaurar calculado</button><button id="salvarValor" class="btn primary" type="button">Salvar valor</button></div>
+  </dialog>
 
-<script src="script.js"></script>
+  <dialog id="modalTaxa" class="modal">
+    <div class="modal-head"><div><p class="eyebrow">AJUSTE INDIVIDUAL</p><h2>Alterar % da venda</h2></div><button id="fecharModalTaxa" class="icon-btn" type="button" aria-label="Fechar">×</button></div>
+    <p id="vendaTaxaSelecionada" class="modal-description"></p>
+    <label>Comissão desta venda (%)<input id="novaTaxaVenda" type="number" min="0" max="100" step="0.01" placeholder="10"></label>
+    <small id="taxaPadraoInfo" class="calculated-info"></small>
+    <div class="modal-actions"><button id="restaurarTaxa" class="btn ghost" type="button">Usar taxa geral</button><button id="salvarTaxa" class="btn primary" type="button">Salvar porcentagem</button></div>
+  </dialog>
 
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
 </body>
 </html>
